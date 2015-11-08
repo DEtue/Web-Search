@@ -1,28 +1,16 @@
+from pyWeb import*
 import sys
-from PyQt4 import QtGui
-from webSearch import Ui_Dialog
-import pyWeb
+from PyQt4 import QtCore, QtGui
+from webSearch import *
 
-
-class searchWindow(QtGui.QDialog):
-    def __init__(self, parent= None):
-        QtGui.QDialog.__init__(self, parent)
-        self.ui = Ui_Dialog()
+class MyApp(QtGui.QD):
+    def __init__(self):
+        QtGui.QMainWindow.__init__(self)
+        self.ui = Ui_dialog()
         self.ui.setupUi(self)
-
-        #search button
-        self.searchButton = QtGui.QPushButton()
-        self.searchButton.clicked.connect(self.Searcher)
-
-
-    def Searcher(self):
-        searchString =  str(self.lineEdit.currentText())
-        myEngine = str(self.comboBox.currentText())
-        pyWeb.searchFor(str(pyWeb.getEngine(myEngine)), searchString)
-
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
-    myapp = searchWindow()
+    myapp = MyApp()
     myapp.show()
     app.exec_()
